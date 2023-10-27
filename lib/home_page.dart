@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'menu_card.dart';
+
 class HomePage extends StatelessWidget {
-  
   const HomePage({super.key});
 
   @override
@@ -12,69 +13,32 @@ class HomePage extends StatelessWidget {
         title: const Text("MDA Resto"),
       ),
       body: ListView(
-        children: [
-          const SizedBox(height: 20.0),
-          const Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 20.0,
-              vertical: 10.0,
-            ),
-            child: TextField(
-              decoration: InputDecoration(
-                  label: Text("Nom"), border: OutlineInputBorder()),
-            ),
-          ),
-          const SizedBox(height: 20.0),
-          const Padding(
-            padding: EdgeInsets.all(20),
-            child: TextField(
-              decoration: InputDecoration(
-                  label: Text("Prenom"), border: OutlineInputBorder()),
-            ),
-          ),
-          Switch(value: true, onChanged: (value) {}),
-          ElevatedButton(
-            onPressed: () {},
-            child: const Icon(Icons.access_alarm_outlined),
-          ),
-          OutlinedButton(onPressed: () {}, child: const Text("Valider")),
-          const SizedBox(height: 20.0),
-          Container(
-            height: 300.0,
-            width: 300.0,
-            decoration: BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.circular(30.0),
-              border: Border.all(color: Colors.blue, width: 10.0),
-              boxShadow: const [
-                 BoxShadow(
-                    color: Colors.green,
-                    offset: Offset(10.0, 20.0),
-                    blurRadius: 20.0),
-              ],
-            ),
-          ),
-
-          Container(
-            height: 300.0,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20.0),
-              image: const DecorationImage(
-                fit: BoxFit.fill,
-                isAntiAlias: true,
-                image: NetworkImage("https://medias.lavie.fr/api/v1/images/view/61f2d5778fe56f7867643e10/width_1000/image.jpg")
-              )
-            ),
-          ),
-
-          const SizedBox(height: 20.0),
-
-          Image.network("https://medias.lavie.fr/api/v1/images/view/61f2d5778fe56f7867643e10/width_1000/image.jpg")
+        children: const [
+           MenuCard(
+             imageName: "pexels-photo-628776.jpeg",
+             title: "Fakoye",
+             description: "Le Fakoye est un mets malien apprécié pour sa simplicité et sa "
+                 "saveur authentique. Il s'agit d'un plat à base de riz, "
+                 "préparé avec des feuilles de baobab séchées, "
+                 "qui sont communément appelées \"feuilles de Fakoye\" d'où le nom du plat."
+                 " Ces feuilles apportent une saveur unique au plat.\n"
+                 "Le Fakoye est un exemple de la diversité de la cuisine "
+                 "malienne et de son utilisation ingénieuse d'ingrédients locaux pour créer des plats délicieux.",
+             price: 2000,
+           ),
+           MenuCard(
+             imageName: "pexels-photo-1351238.jpeg",
+             title: "Mafé",
+             description: "Le Mafé est un plat malien à base de viande (généralement du bœuf ou du poulet) cuit dans une délicieuse sauce d'arachide, agrémentée de légumes comme les carottes, les patates douces et les aubergines. Il est souvent accompagné de riz ou de couscous malien. La sauce d'arachide confère au plat une saveur crémeuse et légèrement épicée.",
+             price: 2500,
+           ),
+           MenuCard(
+             imageName: "pexels-photo-1640777.jpeg",
+             title: "Kedjenou",
+             description: "Le Kedjenou est un ragoût traditionnel malien préparé avec du poulet ou de la viande, des légumes (comme des tomates, des oignons et des poivrons) et des épices. Le plat est cuit lentement dans un pot en terre cuite scellé pour que les saveurs se mélangent parfaitement. C'est un plat savoureux et parfumé, généralement servi avec du riz.",
+             price: 3000,
+           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
       ),
     );
   }
