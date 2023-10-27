@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
-import "home_page.dart";
+
+import "ui/home_page.dart";
 
 void main() {
   runApp(const MDARestoApp());
@@ -12,12 +13,13 @@ class MDARestoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "MDA Resto 2023",
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
       home: const HomePage(),
+      // home: const AddMenuItemPage(),
     );
   }
 }

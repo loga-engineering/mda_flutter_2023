@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 
-class MenuCard extends StatelessWidget {
+import '../data/menu_item_data.dart';
 
-  final String imageName;
-  final String title;
-  final String description;
-  final int price;
+class MenuItemCard extends StatelessWidget {
 
-  const MenuCard({
+  final MenuItemData itemData;
+
+  const MenuItemCard(this.itemData, {
     super.key,
-    required this.imageName,
-    required this.title,
-    required this.description,
-    required this.price,
   });
 
   @override
@@ -21,12 +16,12 @@ class MenuCard extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: Column(
         children: [
-          Image.asset("assets/images/$imageName"),
+          Image.asset("assets/images/${itemData.imageName}"),
           const SizedBox(height: 40.0),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Text(
-              title,
+              itemData.title,
               style: const TextStyle(
                 fontSize: 36.0,
                 fontWeight: FontWeight.bold,
@@ -37,7 +32,9 @@ class MenuCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Text(
-              description,
+              itemData.description,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 18.0,
@@ -61,7 +58,7 @@ class MenuCard extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    "$price F",
+                    "${itemData.price} F",
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 18.0,
