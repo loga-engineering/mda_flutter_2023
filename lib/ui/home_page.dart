@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mda_resto_2023/ui/add_menu_item_page.dart';
+import 'package:mda_resto_2023/data/cart_data.dart';
 import 'package:mda_resto_2023/data/menu_item_data.dart';
+import 'package:mda_resto_2023/ui/add_menu_item_page.dart';
+import 'package:mda_resto_2023/ui/order_page.dart';
 
 import 'cart_page.dart';
 import 'menu_item_card.dart';
@@ -14,6 +16,50 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int get totalItem =>
+      cartList.map((cartItem) => cartItem.quantity).fold(0, (x, y) => x + y);
+
+  addToCart(MenuItemData menuItem) {
+    int index = -1;
+
+    for (int i = 0; i < cartList.length; i++) {
+      final cartItem = cartList[i];
+      if (cartItem.id == menuItem.id) {
+        index = i;
+        break;
+      }
+    }
+
+    if (index != -1) {
+      final cartItem = cartList[index];
+      cartItem.quantity++;
+    } else {
+      final cartItem = CartItemData(menuItem, 1);
+      cartList.add(cartItem);
+    }
+
+    setState(() {});
+  }
+
+  incrementCartItem(CartItemData cartItem) {
+    if (cartItem.quantity >= 10) {
+    } else {
+      cartItem.quantity++;
+    }
+
+    setState(() {});
+  }
+
+  decrementCartItem(CartItemData cartItem) {
+    if (cartItem.quantity <= 1) {
+      cartList.remove(cartItem);
+    } else {
+      cartItem.quantity--;
+    }
+
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,17 +73,22 @@ class _HomePageState extends State<HomePage> {
     return AppBar(
       title: const Text("MDA Resto"),
       actions: [
+        IconButton(
+          onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const OrderPage())),
+          icon: const Icon(Icons.shop),
+        ),
         InkWell(
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => const CartPage(),
+                builder: (context) =>
+                    CartPage(incrementCartItem, decrementCartItem),
               ),
             );
           },
-          child: const Stack(
+          child: Stack(
             children: [
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(right: 15.0, top: 5.0),
                 child: CircleAvatar(
                   radius: 22.0,
@@ -51,8 +102,8 @@ class _HomePageState extends State<HomePage> {
                   radius: 10.0,
                   backgroundColor: Colors.red,
                   child: Text(
-                    "0",
-                    style: TextStyle(fontSize: 12),
+                    "$totalItem",
+                    style: const TextStyle(fontSize: 12),
                   ),
                 ),
               ),
@@ -75,7 +126,7 @@ class _HomePageState extends State<HomePage> {
               builder: (context) => MenuItemPage(menuItem),
             ));
           },
-          child: MenuItemCard(menuItem),
+          child: MenuItemCard(menuItem, addToCart),
         );
       },
     );

@@ -42,6 +42,7 @@ class _AddMenuItemPageState extends State<AddMenuItemPage> {
     if (!isValid) return;
 
     final menuItemData = MenuItemData(
+      id: DateTime.now().microsecond,
       imageName: imageName!,
       title: titleController.text,
       description: descriptionController.text,

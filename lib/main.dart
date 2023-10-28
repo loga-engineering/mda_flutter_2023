@@ -15,7 +15,7 @@ class MDARestoApp extends StatelessWidget {
       title: "MDA Resto 2023",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
         useMaterial3: true,
       ),
       home: const HomePage(),

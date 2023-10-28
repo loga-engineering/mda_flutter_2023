@@ -1,10 +1,12 @@
 class MenuItemData {
+  final int id;
   final String imageName;
   final String title;
   final String description;
   final int price;
 
   const MenuItemData({
+    required this.id,
     required this.imageName,
     required this.title,
     required this.description,
@@ -14,6 +16,7 @@ class MenuItemData {
 
 final menuItemList = [
   const MenuItemData(
+      id: 1,
       imageName: "pexels-photo-628776.jpeg",
       title: "Fakoye",
       description:
@@ -26,6 +29,7 @@ final menuItemList = [
           "malienne et de son utilisation ingénieuse d'ingrédients locaux pour créer des plats délicieux.",
       price: 2000),
   const MenuItemData(
+    id: 2,
     imageName: "pexels-photo-1351238.jpeg",
     title: "Mafé",
     description:
@@ -33,6 +37,7 @@ final menuItemList = [
     price: 2500,
   ),
   const MenuItemData(
+    id: 3,
     imageName: "pexels-photo-1640777.jpeg",
     title: "Kedjenou",
     description:

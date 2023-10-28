@@ -5,8 +5,9 @@ import '../data/menu_item_data.dart';
 class MenuItemCard extends StatelessWidget {
 
   final MenuItemData itemData;
+  final Function(MenuItemData) addToCart;
 
-  const MenuItemCard(this.itemData, {
+  const MenuItemCard(this.itemData, this.addToCart, {
     super.key,
   });
 
@@ -73,7 +74,7 @@ class MenuItemCard extends StatelessWidget {
                       elevation: 0.0,
 
                     ),
-                    onPressed: () {},
+                    onPressed: () => addToCart(itemData),
                     child: const SizedBox(
                       child:  Text("Ajouter au panier", style: TextStyle(
                         color: Colors.black,
